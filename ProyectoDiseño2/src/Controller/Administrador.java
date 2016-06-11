@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Modelo.Prestamo;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ public class Administrador {
         
     }
     public Prestamo crearPrestamo(){
-        
+        return null;
     }
     public void escribirArchivo(){
         
