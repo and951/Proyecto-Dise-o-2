@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import Controller.Observer;
 import java.util.Scanner;
 
 /**
