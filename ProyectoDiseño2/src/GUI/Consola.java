@@ -5,13 +5,14 @@
  */
 package GUI;
 
+import Controller.Observer;
 import java.util.Scanner;
 
 /**
  *
  * @author Mariano
  */
-public class Consola {
+public class Consola  {
     
     public void menu(){
         Scanner in = new Scanner(System.in);
