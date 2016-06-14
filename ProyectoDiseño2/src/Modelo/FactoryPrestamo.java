@@ -8,38 +8,29 @@ package Modelo;
 /**
  *
  * @author Felipe Mora
+ * @Collaborator Andrés Jiménez 
  */
 public class FactoryPrestamo implements Modelo.FactoryInterfacer {
 
     @Override
     public String identificarPrestamo(Sistema sist_Calculo) {
-        String sistema;
-        if ("Alemán".equals(sist_Calculo.toString()))
-        {
-            return sistema = "Alemán";
-        }else if ("Francés".equals(sist_Calculo.toString()))
-        {
-            return sistema = "Francés";
-        }else if("Americano".equals(sist_Calculo.toString()))
-        {
-            return sistema = "Americano";
-        }        
-        return "No valido";
+       return sist_Calculo.toString();
     }
 
     @Override
     public Prestamo CrearPrestamo(String nombre, double monto_Inicial, double plazo, Moneda moneda, Sistema sist_Calculo, double interesAnual) {
         String prestamo = identificarPrestamo(sist_Calculo);
-        if (prestamo.equals("Alemán"))
-        {
-            return new SistemaAleman(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
-        }else if (prestamo.equals("Americano")){
-            return new SistemaAmericano(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
-        }else if (prestamo.equals("Francés")){
-            return new SistemaFrances(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
-        }
-        //no deberia llegar aca pero se pone como flag
-        return null;
+         switch(sist_Calculo){
+            case Alemán:
+                return new SistemaAleman(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
+            case Americano:
+                return new SistemaAmericano(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
+            case Francés:
+                return new SistemaFrances(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
+            default:
+                return null;
+           }
+      
     }
     
 }
