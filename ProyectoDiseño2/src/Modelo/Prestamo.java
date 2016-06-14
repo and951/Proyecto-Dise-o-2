@@ -39,6 +39,7 @@ public abstract class Prestamo {
     //toString de la clase
     //Nota: Recordar que el tipo de cambio se agrega al inicio desde el Strategy
     //y el chuky se agrega al final
+    @Override
     public String toString()
     {
         int interesTT = 0;

@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import Controller.Administrador;
+import Modelo.Moneda;
+import Modelo.Prestamo;
+import Modelo.Sistema;
 import java.util.Scanner;
 
 /**
@@ -12,6 +16,11 @@ import java.util.Scanner;
  * @author Mariano
  */
 public class Consola {
+    Administrador administradorDelControlador;
+
+    public Consola() {
+        administradorDelControlador = new Administrador();
+    }
     
     public void menu(){
         Scanner in = new Scanner(System.in);
@@ -40,22 +49,30 @@ public class Consola {
     private void menuAux(){
         Scanner in = new Scanner(System.in);
         try{
-            String sistema,moneda,nombre="";
-            double monto,plazo,interes=0.00;
+            String nombre="";
+            Integer numeroSistema, numeroMoneda;
+            Sistema sistema;
+            Moneda moneda;
+            double monto,plazo,interes;
             System.out.println("Ingrese su nombre: ");
             nombre = in.nextLine();
             System.out.println("Ingrese el monto: ");
             monto = in.nextDouble();
             System.out.println("Ingrese el plazo: ");
-            monto = in.nextDouble();
+            plazo = in.nextDouble();
             System.out.println("Ingrese el interes: ");
-            monto = in.nextDouble();
-            System.out.println("Ingrese nombre sistema (americano,"
-                    + "aleman,frances): ");
-            sistema = in.next();
-            System.out.println("Ingrese la moneda(colones,dolares):");
-            moneda = in.next();
-            //Llamada a controlador
+            interes = in.nextDouble();
+            System.out.println("Ingrese el numero del tipo de sistema deseado: \n1.Alemán"
+                    + "\n2.Frances \n3.Americano");
+            numeroSistema = Integer.parseInt(in.next())-1;
+            sistema = Sistema.values()[numeroSistema];
+          
+            System.out.println("Ingrese el numero del tipo moneda deseado: \n1.Colones \n2.Dolares");
+            numeroMoneda = Integer.parseInt(in.next())-1;
+            moneda = Moneda.values()[numeroMoneda];
+            
+            Prestamo prestamoActual = administradorDelControlador.crearPrestamo(nombre, monto, plazo, moneda, sistema, interes);
+            System.out.println(administradorDelControlador.escribirArchivo(prestamoActual));
         }catch(Exception e){
             System.out.println("Error verique los datos!");
         }

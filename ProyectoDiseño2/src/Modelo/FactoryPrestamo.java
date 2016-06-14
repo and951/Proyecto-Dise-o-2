@@ -19,7 +19,6 @@ public class FactoryPrestamo implements Modelo.FactoryInterfacer {
 
     @Override
     public Prestamo CrearPrestamo(String nombre, double monto_Inicial, double plazo, Moneda moneda, Sistema sist_Calculo, double interesAnual) {
-        String prestamo = identificarPrestamo(sist_Calculo);
          switch(sist_Calculo){
             case Alemán:
                 return new SistemaAleman(nombre, monto_Inicial, plazo, moneda, sist_Calculo, interesAnual);
