@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
  *
  * @author Mariano
  */
-public class JFramePantallaInicial extends javax.swing.JFrame {
+public class JFramePantallaInicial extends javax.swing.JFrame
+{
 
     /**
      * Creates new form JFramePantallaInicial
@@ -229,4 +230,6 @@ public class JFramePantallaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField txtPeriodo;
     private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
+
+
 }
