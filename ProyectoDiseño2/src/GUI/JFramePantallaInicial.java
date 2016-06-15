@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import Controller.Administrador;
+import Modelo.Moneda;
+import Modelo.Prestamo;
+import Modelo.Sistema;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,13 +16,16 @@ import javax.swing.JOptionPane;
  * @author Mariano
  */
 public class JFramePantallaInicial extends javax.swing.JFrame
+
 {
+    Administrador controllerAdministrator;
 
     /**
      * Creates new form JFramePantallaInicial
      */
     public JFramePantallaInicial() {
         initComponents();
+        controllerAdministrator = new Administrador();
     }
 
     /**
@@ -49,7 +56,7 @@ public class JFramePantallaInicial extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        comboAmortizacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "americano", "aleman", "frances" }));
+        comboAmortizacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Americano", "Alemán", "Francés" }));
 
         jLabel1.setText("Nombre");
 
@@ -63,7 +70,12 @@ public class JFramePantallaInicial extends javax.swing.JFrame
 
         jLabel6.setText("Moneda");
 
-        comboMoneda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "colones", "dolares", " " }));
+        comboMoneda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Colones", "Dolares", " " }));
+        comboMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMonedaActionPerformed(evt);
+            }
+        });
 
         txtResultado.setEditable(false);
         txtResultado.setColumns(20);
@@ -167,15 +179,21 @@ public class JFramePantallaInicial extends javax.swing.JFrame
         try{
         String nombre=txtNombre.getText();
         double monto=Double.parseDouble(txtMonto.getText());
-        double plazo=Double.parseDouble(txtInteres.getText());
+        double plazo=Double.parseDouble(txtPeriodo.getText());
         double interes=Double.parseDouble(txtInteres.getText());
-        String sistema=comboAmortizacion.getSelectedItem().toString();
-        String moneda=comboMoneda.getSelectedItem().toString();
+        Sistema sistema=Sistema.valueOf(comboAmortizacion.getSelectedItem().toString());
+        Moneda moneda=Moneda.valueOf(comboMoneda.getSelectedItem().toString());
+        Prestamo prestamoActual = controllerAdministrator.crearPrestamo(nombre, monto, plazo, moneda, sistema, interes);
+        txtResultado.setText(controllerAdministrator.escribirArchivo(prestamoActual));
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Verifique los"
                     + " datos ingresados");
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void comboMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMonedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboMonedaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -21,9 +21,9 @@ import java.util.Date;
 public class Administrador {
     private String tipoDeCambio;
     private String fecha;
-    private FactoryInterfacer factory;
-    private Integration_WS integration;
-    private WebService webService;
+    private final FactoryInterfacer factory;
+    private final Integration_WS integration;
+    private final WebService webService;
     
     public Administrador(){
         factory = new FactoryPrestamo();

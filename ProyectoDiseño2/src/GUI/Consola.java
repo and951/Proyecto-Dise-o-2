@@ -15,16 +15,12 @@ import java.util.Scanner;
  *
  * @author Mariano
  */
-<<<<<<< HEAD
 public class Consola {
     Administrador administradorDelControlador;
 
     public Consola() {
         administradorDelControlador = new Administrador();
     }
-=======
-public class Consola  {
->>>>>>> 3be55c4664a3ea29fd300de0fbc45b635bf452d3
     
     public void menu(){
         Scanner in = new Scanner(System.in);
